@@ -152,7 +152,13 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
     /// corners to be rounded
     open var roundedCorners: UIRectCorner = []
     
+    open var drawBarGradientEnabled = false
     
+    open var gradientPositions: [CGFloat]?
+    
+    open var gradientStart: CGPoint = .infinite
+    
+    open var gradientEnd: CGPoint = .infinite
     
     // MARK: - NSCopying
     

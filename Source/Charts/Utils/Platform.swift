@@ -14,6 +14,24 @@ public typealias NSUIScrollView = UIScrollView
 public typealias NSUIScreen = UIScreen
 public typealias NSUIDisplayLink = CADisplayLink
 
+
+extension NSUIColor
+ {
+     var nsuirgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
+        var red: CGFloat = 0
+               var green: CGFloat = 0
+               var blue: CGFloat = 0
+               var alpha: CGFloat = 0
+
+               guard getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+                   return nil
+               }
+
+               return (red: red, green: green, blue: blue, alpha: alpha)
+           }
+       }
+
+
 open class NSUIView: UIView
 {
     @objc var nsuiLayer: CALayer?
@@ -123,6 +141,28 @@ public class NSUIDisplayLink
         }
     }
 }
+
+extension NSUIColor
+ {
+     var nsuirgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        guard let colorSpaceModel = cgColor.colorSpace?.model else {
+            return nil
+        }
+        guard colorSpaceModel == .rgb else {
+            return nil
+        }
+
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return (red: red, green: green, blue: blue, alpha: alpha)
+    }
+}
+
+
+
 
 extension NSView
 {
