@@ -152,6 +152,8 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
     /// corners to be rounded
     open var roundedCorners: UIRectCorner = []
     
+    
+    
     // MARK: - NSCopying
     
     open override func copy(with zone: NSZone? = nil) -> Any
