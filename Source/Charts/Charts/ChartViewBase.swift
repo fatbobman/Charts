@@ -45,6 +45,9 @@ public protocol ChartViewDelegate
 
     // Callbacks when Animator stops animating
     @objc optional func chartView(_ chartView: ChartViewBase, animatorDidStop animator: Animator)
+    
+    // 滚动终止时调用.
+    @objc optional func chartScrollStop(_ chartView:ChartViewBase)
 }
 
 open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate

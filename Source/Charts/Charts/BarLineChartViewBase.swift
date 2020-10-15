@@ -850,6 +850,9 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
         }
     }
     
+    //我自己加的用来判断是否正在滚动
+    var _isScrolling = true
+    
     @objc private func decelerationLoop()
     {
         let currentTime = CACurrentMediaTime()
@@ -872,6 +875,14 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
         }
         
         _decelerationLastTime = currentTime
+        
+        //这个值用来判断滚动的位置,如果由于我自己需要将精度控制在x变化1以内,所以小于1便提醒.这个值越小,提示越晚,值是CGPoint
+        //加入30个格,分成30列,每列10个point,如果控制在1列的精度,10应该可以接受
+        if abs(_decelerationVelocity.x) < 10 && abs(_decelerationVelocity.y) < 10 && !_isScrolling{
+            _isScrolling = true
+            delegate?.chartScrollStop?(self)
+            
+        }
         
         if abs(_decelerationVelocity.x) < 0.001 && abs(_decelerationVelocity.y) < 0.001
         {
