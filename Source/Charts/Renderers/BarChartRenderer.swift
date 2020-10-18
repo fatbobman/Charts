@@ -515,12 +515,16 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 accessibilityOrderedElements[barIndex/stackSize].append(element)
             }
             
+            
+            
             if drawBorder
             {
                 context.addPath(path.cgPath)
                 context.strokePath()
             }
         }
+        
+        context.restoreGState()
     }
     
     private func drawNormalBars(context: CGContext, dataSet: IBarChartDataSet, dateSetIndex index: Int, buffer: BarChartRenderer.Buffer)
