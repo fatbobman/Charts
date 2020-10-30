@@ -11,7 +11,12 @@
 
 import Foundation
 import CoreGraphics
+#if os(iOS)
 import UIKit
+#endif
+#if os(macOS)
+import AppKit
+#endif
 
 open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDataSet
 {
@@ -150,7 +155,7 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
     open var highlightAlpha = CGFloat(120.0 / 255.0)
     
     /// corners to be rounded
-    open var roundedCorners: UIRectCorner = []
+    open var roundedCorners: Corners = []
     
     open var drawBarGradientEnabled = false
     

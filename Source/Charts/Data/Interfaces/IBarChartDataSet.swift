@@ -11,7 +11,13 @@
 
 import Foundation
 import CoreGraphics
+#if os(iOS)
 import UIKit
+#endif
+#if os(macOS)
+import AppKit
+#endif
+
 @objc
 public protocol IBarChartDataSet: IBarLineScatterCandleBubbleChartDataSet
 {
@@ -41,7 +47,7 @@ public protocol IBarChartDataSet: IBarLineScatterCandleBubbleChartDataSet
     var stackLabels: [String] { get set }
     
     /// corners to be rounded
-    var roundedCorners: UIRectCorner { get set }
+    var roundedCorners: Corners { get set }
     
     var drawBarGradientEnabled: Bool { get set }
     
