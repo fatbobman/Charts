@@ -63,11 +63,11 @@ public extension BezierPath {
     // Compatibility bewteen NSBezierPath and UIBezierPath
     
     #if os(iOS) || os(tvOS)
-    public func curve(to point: CGPoint, controlPoint1: CGPoint, controlPoint2: CGPoint) {
+    func curve(to point: CGPoint, controlPoint1: CGPoint, controlPoint2: CGPoint) {
         addCurve(to: point, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
     }
     
-    public func line(to point: CGPoint) {
+    func line(to point: CGPoint) {
         addLine(to: point)
     }
     #endif
@@ -77,10 +77,17 @@ public extension BezierPath {
         
         // On iOS & tvOS, we need to flip the corners
         #if os(iOS) || os(tvOS)
-        let corners = roundedCorners.flipped()
+        //let corners = roundedCorners.flipped()
+        
+        
+//        let corner =  UIRectCorner.init(rawValue: UInt(roundedCorners.rawValue))
+//
+//        UIBezierPath(roundedRect: rect, byRoundingCorners: corner, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+        
+        
         #elseif os(macOS)
+        
         let corners = roundedCorners
-        #endif
         
         let maxX: CGFloat = rect.size.width
         let minX: CGFloat = 0
@@ -128,6 +135,7 @@ public extension BezierPath {
         else {
             line(to: bottomLeftCorner)
         }
+        #endif
     }
 }
 

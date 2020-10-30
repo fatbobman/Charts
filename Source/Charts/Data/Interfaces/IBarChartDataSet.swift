@@ -47,7 +47,11 @@ public protocol IBarChartDataSet: IBarLineScatterCandleBubbleChartDataSet
     var stackLabels: [String] { get set }
     
     /// corners to be rounded
+    #if os(macOS)
     var roundedCorners: Corners { get set }
+    #else
+    var roundedCorners: UIRectCorner { get set }
+    #endif
     
     var drawBarGradientEnabled: Bool { get set }
     

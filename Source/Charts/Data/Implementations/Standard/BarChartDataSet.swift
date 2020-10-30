@@ -155,7 +155,11 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
     open var highlightAlpha = CGFloat(120.0 / 255.0)
     
     /// corners to be rounded
+    #if os(macOS)
     open var roundedCorners: Corners = []
+    #else
+    open var roundedCorners: UIRectCorner = []
+    #endif
     
     open var drawBarGradientEnabled = false
     
